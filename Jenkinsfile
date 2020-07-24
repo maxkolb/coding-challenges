@@ -1,15 +1,20 @@
 pipeline {
   agent any
   stages {
-    stage('build') {
-      if (env.BRANCH_NAME == 'master') {
-        steps {
-          echo 'master'
-        }
-      } else if (env.BRANCH_NAME == 'jenkins') {
-        steps {
-          echo 'jenkins'
-        }
+    stage('build:master') {
+      when {
+        branch 'master'
+      }
+      steps {
+        echo 'master'
+      }
+    }
+    stage('build:jenkins') {
+      when {
+        branch 'jenkins'
+      }
+      steps {
+        echo 'jenkins'
       }
     }
 
