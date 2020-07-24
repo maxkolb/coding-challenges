@@ -2,8 +2,14 @@ pipeline {
   agent any
   stages {
     stage('build') {
-      steps {
-        echo 'build'
+      if (env.BRANCH_NAME == 'master') {
+        steps {
+          echo 'master'
+        }
+      } else if (env.BRANCH_NAME == 'jenkins') {
+        steps {
+          echo 'jenkins'
+        }
       }
     }
 
